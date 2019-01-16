@@ -7,7 +7,7 @@
 <body>
 <div id="app">
     <h2>
-        <a href="http://google.com" target="_blank" v-on:click.prevent="clickOnGoogle">Google</a>
+        <a href="http://google.com" target="_blank" v-on:click.prevent="">Google</a>
     </h2>
 
     <h2 v-on:mousemove="handleMouseMove">
@@ -24,10 +24,7 @@
             y: 0
         },
         methods: {
-            clickOnGoogle: function (event) {
-                alert('333')
-            },
-            handleMouseMove: function () {
+            handleMouseMove: function (event) {
                 this.x = event.clientX
                 this.y = event.clientY
             }
