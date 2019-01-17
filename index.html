@@ -9,11 +9,12 @@
     <h2>
         <a href="http://google.com" target="_blank" v-on:click.prevent="">Google</a>
     </h2>
-
     <h2 v-on:mousemove="handleMouseMove">
         X: {{ x }} \ Y: {{ y }}
         <span v-on:mousemove.stop="">Не изменять</span>
     </h2>
+    <hr>
+    <input type="text" v-on:keyup.enter.space="alertValue">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
 <script>
@@ -27,9 +28,11 @@
             handleMouseMove: function (event) {
                 this.x = event.clientX
                 this.y = event.clientY
+            },
+            alertValue: function (event) {
+                alert(event.target.value)
             }
         }
-
     })
 </script>
 </body>
