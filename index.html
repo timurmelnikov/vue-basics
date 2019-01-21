@@ -29,14 +29,11 @@
 <body>
 <div id="app">
 
-    <template v-if="isVisible">
-        <h2>I am title</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, repellendus?</p>
-    </template>
-    <template v-if="!isVisible">
-        <h2 style="color: red">I am title</h2>
-        <p style="color: blue">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, repellendus?</p>
-    </template>
+
+    <h1 v-show="isVisible">I am visible</h1>
+    <h2 v-show="!isVisible">You can't see me!</h2>
+
+
     <hr>
     <button @click="isVisible = !isVisible">Toggle</button>
 
