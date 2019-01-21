@@ -28,14 +28,21 @@
 </head>
 <body>
 <div id="app">
-
-
-    <h1 v-show="isVisible">I am visible</h1>
-    <h2 v-show="!isVisible">You can't see me!</h2>
-
+    <ul>
+        <li v-for="(person, index) of people">
+            {{index + 1}} {{ person.name }} - <b>{{ person.age }}</b>
+        </li>
+    </ul>
+    <hr>
+    <ol>
+        <li v-for="num of 5"> {{num}}</li>
+    </ol>
 
     <hr>
-    <button @click="isVisible = !isVisible">Toggle</button>
+    <ul>
+        <li v-for="(value, key, index) in person"><em>{{index+1}}</em> <b>{{key}}</b> {{value}}</li>
+
+    </ul>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
@@ -43,7 +50,17 @@
     new Vue({
         el: '#app',
         data: {
-            isVisible: true
+            people: [
+                {name: 'Vlad', age: 20},
+                {name: 'Max', age: 30},
+                {name: 'Elrna', age: 25},
+                {name: 'Timur', age: 43}
+            ],
+            person: {
+                name: 'Victor',
+                age: 50,
+                job: 'Lumberjack'
+            }
         }
     })
 </script>
