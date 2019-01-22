@@ -4,73 +4,60 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 1px solid black;
-            display: inline-block;
-            margin: 40px;
-        }
-
-        .red {
-            background: red;
-        }
-
-        .blue {
-            background: blue;
-        }
-
-        .green {
-            background: green;
+        [v-cloak] {
+            display: none;
         }
     </style>
 </head>
 <body>
-<div id="app">
-    <h2>Counter: {{counter}} / {{counter2}}</h2>
-    <h3>Result: {{result()}}</h3>
-    <h3>Computed Result: {{computedResult}}</h3>
-    <button @click="add()">Add</button>
-    <button @click="sub()">Sub</button>
-    <button @click="counter2++">Add counter 2</button>
+<div id="app" v-cloak>
+    <h2>{{title}}</h2>
+    <h3>{{newField}}</h3>
 
-
+    <button @click="title ='Updated title'">Update title</button>
 </div>
+<hr>
+<div id="app2" v-cloak>
+    <h2>{{title}}</h2>
+    <button @click="updateFirstTitle()">Update First Title</button>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
 <script>
-    new Vue({
+    var vue1 = new Vue({
         el: '#app',
         data: {
-            counter: 0,
-            counter2: 0,
+            title: 'I am a Vue'
         },
         methods: {
-            add: function () {
-                this.counter++
-            },
-            sub: function () {
-                this.counter--
-            },
-            result: function () {
-                console.log('Result was called')
-                return this.counter > 3 ? 'More than 3' : 'Less then 3'
-            }
-        },
-        computed: {
-            computedResult: function () {
-                console.log('computedResult was called')
-                return this.counter > 3 ? 'More than 3' : 'Less then 3'
-            }
-        },
-        watch: {
-            counter: function (val) {
-                console.log('From watch object:', val)
-            },
-            counter2: function (val) {
-                console.log('From watch object2:', val)
+            alertFast: function () {
+                alert('Fast!')
             }
         }
+
+    })
+    console.log(vue1)
+
+    //vue1.newField = 'Random text'  //Так делать нельзя.
+
+    new Vue({
+        el: '#app2',
+        data: {
+            title: 'Hello! Am a Vue2'
+        },
+        methods: {
+            updateFirstTitle: function () {
+
+                vue1.title = 'Updated from second app';
+                vue1.newField = 'New newField' //Так делать можно.
+                setTimeout(function () {
+                    vue1.alertFast()
+                }, 3000)
+
+
+            }
+        }
+
     })
 </script>
 </body>
