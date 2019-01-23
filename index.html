@@ -11,16 +11,14 @@
 </head>
 <body>
 <div id="app" v-cloak>
-    <h2>{{title}}</h2>
-    <h3>{{newField}}</h3>
+    <h2 ref="heading">{{title}}</h2>
 
-    <button @click="title ='Updated title'">Update title</button>
+
+    <button @click="updateFirstTitle()">Update title</button>
+    <hr ref="horline">
 </div>
-<hr>
-<div id="app2" v-cloak>
-    <h2>{{title}}</h2>
-    <button @click="updateFirstTitle()">Update First Title</button>
-</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
 <script>
@@ -30,35 +28,19 @@
             title: 'I am a Vue'
         },
         methods: {
-            alertFast: function () {
-                alert('Fast!')
-            }
-        }
-
-    })
-    console.log(vue1)
-
-    //vue1.newField = 'Random text'  //Так делать нельзя.
-
-    new Vue({
-        el: '#app2',
-        data: {
-            title: 'Hello! Am a Vue2'
-        },
-        methods: {
             updateFirstTitle: function () {
-
-                vue1.title = 'Updated from second app';
-                vue1.newField = 'New newField' //Так делать можно.
-                setTimeout(function () {
-                    vue1.alertFast()
-                }, 3000)
-
-
+                this.title = 'New title'
+                this.$refs.heading.style.color = 'red'
+                console.log(this.$refs.heading)
+                console.log(this.$refs.horline)
+                console.log(this.$refs)
+                console.log(document.querySelector('hr')) //Не хорошая идея...
             }
         }
 
     })
+
+
 </script>
 </body>
 </html>
