@@ -10,36 +10,22 @@
     </style>
 </head>
 <body>
-<div id="app" v-cloak>
-    <h2 ref="heading">{{title}}</h2>
-
-
-    <button @click="updateFirstTitle()">Update title</button>
-    <hr ref="horline">
-</div>
-
-
-
+<div id="app" v-cloak></div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
 <script>
-    var vue1 = new Vue({
-        el: '#app',
+    var vue = new Vue({
         data: {
             title: 'I am a Vue'
         },
-        methods: {
-            updateFirstTitle: function () {
-                this.title = 'New title'
-                this.$refs.heading.style.color = 'red'
-                console.log(this.$refs.heading)
-                console.log(this.$refs.horline)
-                console.log(this.$refs)
-                console.log(document.querySelector('hr')) //Не хорошая идея...
-            }
-        }
+        template: `
+<div>
+<h1>{{ title }}</h1>
+<p>Hello p</p>
+</div>
+`
+    });
 
-    })
-
+    vue.$mount('#app')
 
 </script>
 </body>
