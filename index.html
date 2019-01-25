@@ -11,48 +11,31 @@
 </head>
 <body>
 <div id="app" v-cloak>
-    <h2>{{title}}</h2>
-    <button @click="title = 'Changed title'">Change title</button>
-    <button @click="doDestroy()">Destroy</button>
+    <my-counter v-for="c in 5"></my-counter>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
 <script>
-    var vue = new Vue({
-        el: '#app',
-        data: {
-            title: 'I am a Vue'
-        },
-        methods: {
-            doDestroy: function () {
-                this.$destroy()
+    Vue.component('my-counter', {
+        template: `
+    <div style="border: 1px solid black; padding: 10px">
+        <h2>Counter: {{counter}}</h2>
+        <button @click="add">Add</button>
+    </div>
+    `,
+        data: function () {
+            return {
+                counter: 0
             }
         },
-        beforeCreate: function () {
-            console.log('Before Create')
-        },
-        created: function () {
-            console.log('Created')
-        },
-        beforeMount: function () {
-            console.log('Before Mount')
-        },
-        mounted: function () {
-            console.log('Mounted')
-        },
-        beforeUpdate: function () {
-            console.log('Before Update')
-        },
-        updated: function () {
-            console.log('Updated')
-        },
-        beforeDestroy: function () {
-            console.log('Before Destroy')
-        },
-        destroyed: function () {
-            console.log('Destroyed')
+        methods: {
+            add: function () {
+                this.counter++
+            }
         }
-
-    });
+    })
+    var vue = new Vue({
+        el: '#app',
+    })
 </script>
 </body>
 </html>
