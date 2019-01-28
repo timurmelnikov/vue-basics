@@ -45,14 +45,14 @@
     var vue = new Vue({
         el: '#app',
         components: {
-            'my-counter': component
+            'my-counter': component //Лучше использовать camelCale - myCounter
         }
     })
 
     var vue2 = new Vue({
         el: '#app2',
         components: {
-            'my-counter2': component
+            myCounter2: component //Лучше писать так, а не так 'my-counter2'
         }
     })
 
